@@ -4,7 +4,7 @@ This Node.js module wraps the undocumented API used to control the [Yale Smart A
 
 ## Installation
 
-`npm i yalealarmsystem`
+`npm i yalealarmsystem --save`
 
 ## Usage
 
