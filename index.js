@@ -3,9 +3,8 @@ const setCookie = require('set-cookie-parser');
 
 const urls = {
     login: 'https://www.yalehomesystem.co.uk/homeportal/api/login/check_login',
-    status: 'https://www.yalehomesystem.co.uk/homeportal/api/panel/get_panel_mode',
-    armAway: 'https://www.yalehomesystem.co.uk/homeportal/api/panel/set_panel_mode?area=1&mode=arm',
-    armHome: 'https://www.yalehomesystem.co.uk/homeportal/api/panel/set_panel_mode?area=1&mode=home',
+    getStatus: 'https://www.yalehomesystem.co.uk/homeportal/api/panel/get_panel_mode',
+    setStatus: 'https://www.yalehomesystem.co.uk/homeportal/api/panel/set_panel_mode?area=1&mode=',
 };
 
 function getSessionCookie(username, password) {
@@ -34,7 +33,7 @@ function getSessionCookie(username, password) {
 }
 
 function getStatus(sessionCookie) {
-    return fetch(urls.status, { 
+    return fetch(urls.getStatus, { 
         method: 'POST', 
         headers: {
           'Cookie': sessionCookie,
@@ -67,7 +66,27 @@ function getStatus(sessionCookie) {
     });
 }
 
+function setStatus (sessionCookie, mode) {
+    return new Promise((revolve, reject) => {
+        if (!sessionCookie || sessionCookie.length === 0) {
+            reject('Please call getSessionCookie to get your session cookie first');
+        }
+
+        if (mode !== 'arm' && mode !== 'home' && mode !== 'disarm') {
+            reject('Invalid mode passed to setStatus');
+        }
+
+        return fetch(`${urls.setStatus}${mode}`, { 
+            method: 'POST', 
+            headers: {
+              'Cookie': sessionCookie,
+            },
+        })
+    });
+}
+
 module.exports = {
     getSessionCookie,
     getStatus,
+    setStatus,
 }
