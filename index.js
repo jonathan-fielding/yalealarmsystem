@@ -67,7 +67,7 @@ function getStatus(sessionCookie) {
 }
 
 function setStatus (sessionCookie, mode) {
-    return new Promise((revolve, reject) => {
+    return new Promise((resolve, reject) => {
         if (!sessionCookie || sessionCookie.length === 0) {
             reject('Please call getSessionCookie to get your session cookie first');
         }
@@ -76,12 +76,12 @@ function setStatus (sessionCookie, mode) {
             reject('Invalid mode passed to setStatus');
         }
 
-        return fetch(`${urls.setStatus}${mode}`, { 
+        resolve(fetch(`${urls.setStatus}${mode}`, { 
             method: 'POST', 
             headers: {
               'Cookie': sessionCookie,
             },
-        })
+        }));
     });
 }
 
