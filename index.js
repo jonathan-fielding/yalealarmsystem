@@ -10,7 +10,7 @@ const urls = {
   services: 'https://mob.yalehomesystem.co.uk/yapi/services/'
 };
 
-function getAccessToken(username, password) {
+function getSessionCookie(username, password) {
   payload = `grant_type=password&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
   return fetch(urls.auth, {
     method: 'POST',
@@ -36,21 +36,16 @@ function getAccessToken(username, password) {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
           }
         });
-        access_token = json.access_token;
-        return access_token;
+        return json.access_token;
       };
     });
 
 }
 
-//function getServices(access_token) {
-//return
-//};
-
 function setStatus (access_token, alarmstate) {
     return new Promise((resolve, reject) => {
         if (!access_token || access_token.length === 0) {
-            reject('Please call getAccessToken to get your access token first');
+            reject('Please call getSessionCookie to get your access token first');
         }
 
         if (alarmstate !== 'arm' && alarmstate !== 'home' && alarmstate !== 'disarm') {
@@ -76,7 +71,7 @@ function setStatus (access_token, alarmstate) {
 function getStatus (access_token) {
     return new Promise((resolve, reject) => {
         if (!access_token || access_token.length === 0) {
-            reject('Please call getAccessToken to get your access token first');
+            reject('Please call getSessionCookie to get your access token first');
         };
 
         return fetch(urls.getStatus, {
@@ -96,7 +91,7 @@ function getStatus (access_token) {
 }
 
 module.exports = {
-    getAccessToken,
+    getSessionCookie,
     getStatus,
     setStatus,
 }
