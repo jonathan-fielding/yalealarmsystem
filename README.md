@@ -9,12 +9,12 @@ This Node.js module wraps the undocumented API used to control the [Yale Smart A
 
 ## Usage
 
-### getSessionCookie
+### getAccessToken
 
-`getSessionCookie` will retrieve a token to use for the API, it takes two arguments, your username and password used to login to the App of your alarm system.
+`getAccessToken` will retrieve a token to use for the API, it takes two arguments, your username and password used to login to the App of your alarm system.
 
 ```
-getSessionCookie('username', 'password');
+getAccessToken('username', 'password');
 ```
 
 ### getStatus
@@ -25,27 +25,27 @@ getSessionCookie('username', 'password');
 getStatus('access_token');
 ```
 
-As the example shows you will need to pass the sessionCookie into the getStatus method call, as this module is promise based you can simply chain the getStatus method call after your getSessionCookie call.
+As the example shows you will need to pass the sessionCookie into the getStatus method call, as this module is promise based you can simply chain the getStatus method call after your getAccessToken call.
 
 ```
-getSessionCookie('username', 'password').then(getStatus);
+getAccessToken('username', 'password').then(getStatus);
 ```
 
 ### setStatus
 
 `setStatus` will set the status of the alarm system. It takes two parameters:
 
-* Access Token - This is retrieved using `getSessionCookie`
+* Access Token - This is retrieved using `getAccessToken`
 * Mode - The mode can either be 'arm', 'home' or 'disarm'
 
 ```
 setStatus('access_token', 'arm');
 ```
 
-As the example shows you will need to pass the sessionCookie into the setStatus method call, as this module is promise based you can simply chain the setStatus method call after your getSessionCookie call.
+As the example shows you will need to pass the sessionCookie into the setStatus method call, as this module is promise based you can simply chain the setStatus method call after your getAccessToken call.
 
 ```
-getSessionCookie('username', 'password').then((access_token) => {
+getAccessToken('username', 'password').then((access_token) => {
     setStatus(access_token, 'arm');
 });
 ```
