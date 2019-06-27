@@ -1,4 +1,5 @@
 # Yale Alarm System Node.js API Wrapper
+[![Known Vulnerabilities](https://snyk.io//test/github/jonathan-fielding/homebridge-yalealarmsystem/badge.svg?targetFile=package.json)](https://snyk.io//test/github/jonathan-fielding/homebridge-yalealarmsystem?targetFile=package.json)
 
 This Node.js module wraps the undocumented API used to control the [Yale Smart Alarm System](https://www.yale.co.uk/en/yale/couk/products/smart-living/smart-home-alarms/smart-home-alarm-and-view-kit/).
 
