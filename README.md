@@ -10,7 +10,7 @@ This Node.js module wraps the undocumented API used to control the [Yale Smart A
 
 ### getSessionCookie
 
-`getSessionCookie` will retrive a cookie to use for the API, it takes two arguments, your username and password used to login to the App of your alarm system. 
+`getSessionCookie` will retrieve a token to use for the API, it takes two arguments, your username and password used to login to the App of your alarm system.
 
 ```
 getSessionCookie('username', 'password');
@@ -18,10 +18,10 @@ getSessionCookie('username', 'password');
 
 ### getStatus
 
-`getStatus` will retrieve the status of the alarm system, it returns the JSON response the API returns. 
+`getStatus` will retrieve the status of the alarm system, it returns the response the API returns.
 
 ```
-getStatus('sessionCookie');
+getStatus('access_token');
 ```
 
 As the example shows you will need to pass the sessionCookie into the getStatus method call, as this module is promise based you can simply chain the getStatus method call after your getSessionCookie call.
@@ -34,24 +34,24 @@ getSessionCookie('username', 'password').then(getStatus);
 
 `setStatus` will set the status of the alarm system. It takes two parameters:
 
-* Session Cookie - This is retrieved using `getSessionCookie`
+* Access Token - This is retrieved using `getSessionCookie`
 * Mode - The mode can either be 'arm', 'home' or 'disarm'
 
 ```
-setStatus('sessionCookie', 'arm');
+setStatus('access_token', 'arm');
 ```
 
 As the example shows you will need to pass the sessionCookie into the setStatus method call, as this module is promise based you can simply chain the setStatus method call after your getSessionCookie call.
 
 ```
-getSessionCookie('username', 'password').then((sessionCookie) => {
-    setStatus(sessionCookie, 'arm');
+getSessionCookie('username', 'password').then((access_token) => {
+    setStatus(access_token, 'arm');
 });
 ```
 
 ## License
 
-Copyright 2017 Jonathan Fielding
+Copyright 2019 Jonathan Fielding, Jack Mellor & Adam Green
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
