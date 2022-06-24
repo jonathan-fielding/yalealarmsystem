@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/jonathan-fielding/yalealarmsystem#readme",
   "dependencies": {
-    "node-fetch": "^1.7.3",
+    "node-fetch": "^2.6.7",
     "set-cookie-parser": "^2.0.0"
   }
 }
